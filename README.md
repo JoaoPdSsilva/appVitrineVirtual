@@ -1,0 +1,18 @@
+Para fazer a config do Spring framework
+- https://start.spring.io/
+    - Project: _Maven_
+    - Language: _java_ ☕
+    - Spring Boot: Version 3.2.3
+    - Project MetaData:
+      - Group: br.edu.fateclins
+      - Artifact: appVitrine
+      - Name: appVitrine
+      - Description: APP para vitrine Virtual
+      - Package Name: br.edu.fateclins.appVitrine
+      - Packaging: Jar
+      - Java: 17
+    - Dependencies:
+        - Spring Web
+        - Spring Data JPA SQL
+        - Validation
+        - MySQL Driver
