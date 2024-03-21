@@ -16,3 +16,11 @@ Para fazer a config do Spring framework
         - Spring Data JPA SQL
         - Validation
         - MySQL Driver
+
+
+------
+
+- Criação do User no Banco de dados e dando privilegios no banco de dados
+  `CREATE USER 'fatec24a'@'localhost' identified by 'aulafatec';
+GRANT ALL PRIVILEGES ON bdvitrine24a.* TO 'fatec24a'@'localhost';
+FLUSH PRIVILEGES;`
