@@ -1,15 +1,13 @@
 package br.edu.fateclins.appVitrine.modelo.loja;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import java.io.Serializable;
-
-@Entity
-@Table(name = "Usuario")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario implements Serializable {
+public abstract class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
     private String nome;

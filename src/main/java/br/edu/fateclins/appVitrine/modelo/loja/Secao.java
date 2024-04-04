@@ -3,15 +3,16 @@ package br.edu.fateclins.appVitrine.modelo.loja;
 import jakarta.persistence.*;
 
 import java.util.List;
-
+@Entity
+@Table (name = "Tabela_Secao")
 public class Secao {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
     private String nome;
     @OneToMany
-    @JoinColumn(name = "Produtos")
+    @JoinColumn(name = "Tabela_Produto")
     private List<Produto> produtos;
 
     public Secao() {

@@ -3,19 +3,16 @@ package br.edu.fateclins.appVitrine.modelo.loja;
 import jakarta.persistence.*;
 
 @Entity
+@Table (name = "Tabela_ItensVitrine")
 public class ItensVitrine {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @Column
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int qtdeDisponivel;
     @ManyToOne
-    @JoinColumn(name = "Produtos")
+    @JoinColumn(name = "Tabela_Produto")
     private Produto produto;
-
     @ManyToOne
-    @JoinColumn(name = "Vitrine")
+    @JoinColumn(name = "Tabela_Vitrine")
     private Vitrine vitrine;
 
     public ItensVitrine() {

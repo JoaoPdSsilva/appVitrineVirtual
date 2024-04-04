@@ -2,7 +2,6 @@ package br.edu.fateclins.appVitrine.modelo.loja;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,12 +9,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 @Entity
-@PrimaryKeyJoinColumn(name = "ID_USUARIO")
-public class Cliente extends Usuario implements Serializable {
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private Integer id;
+@Table (name = "Tabela_Cliente")
+public class Cliente extends Usuario{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private  Integer id;
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
+    @OneToMany
+    @JoinColumn(name = "Tabela_Compras")
     private List<Compra> comprasRealizadas;
 
     public Cliente() {
@@ -62,15 +64,5 @@ public class Cliente extends Usuario implements Serializable {
         } else {
             return 0;
         }
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
     }
 }

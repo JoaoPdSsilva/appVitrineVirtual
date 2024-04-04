@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table (name = "Produtos")
+@Table (name = "Tabela_Produto")
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,15 +25,15 @@ public class Produto implements Serializable {
     private int qtdeEstoque;
     @Column
     private int estoqueMinimo;
-    @Column(name = "caminhoimagem")
+    @Column(name = "Caminho_Imagem")
     private String imagem;
     @Transient
     private Secao secao;
-@OneToMany
-@JoinColumn(name = "ItensVitrine")
+    @OneToMany
+    @JoinColumn(name = "Tabela_ItensVitrine")
     private List<ItensVitrine> vitrines;
     @OneToMany
-    @JoinColumn(name = "ItensComprados")
+    @JoinColumn(name = "Tabela_ItensComprados")
     private List<ItensComprados> listaComprados;
 
     public Produto() {

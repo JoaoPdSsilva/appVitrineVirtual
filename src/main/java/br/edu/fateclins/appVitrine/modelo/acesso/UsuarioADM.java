@@ -1,14 +1,15 @@
 package br.edu.fateclins.appVitrine.modelo.acesso;
 
 import br.edu.fateclins.appVitrine.modelo.loja.Usuario;
-import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.*;
 
-import java.io.Serializable;
 @Entity
-@PrimaryKeyJoinColumn(name = "ID_USUARIO")
-public class UsuarioADM  extends Usuario implements Serializable {
-
+@Table (name = "Tabela_UsuarioADM")
+public class UsuarioADM  extends Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private  Integer id;
+    @ManyToOne
     private Perfil perfil;
 
     public UsuarioADM() {
@@ -20,5 +21,15 @@ public class UsuarioADM  extends Usuario implements Serializable {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

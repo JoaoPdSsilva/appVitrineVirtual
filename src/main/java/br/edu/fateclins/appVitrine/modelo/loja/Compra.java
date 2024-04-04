@@ -2,14 +2,13 @@ package br.edu.fateclins.appVitrine.modelo.loja;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
 @Entity
-public class Compra implements Serializable {
+@Table (name = "Tabela_Compras")
+public class Compra {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
     private boolean concluida;
@@ -18,10 +17,10 @@ public class Compra implements Serializable {
     @Column
     private double valorFrete;
     @ManyToOne
-    @JoinColumn(name ="Cliente")
+    @JoinColumn(name = "Tabela_Cliente")
     private Cliente cliente;
     @OneToMany
-    @JoinColumn(name ="ItensComprados")
+    @JoinColumn(name = "Tabela_ItensComprados")
     private List<ItensComprados> itens;
 
     public Compra() {

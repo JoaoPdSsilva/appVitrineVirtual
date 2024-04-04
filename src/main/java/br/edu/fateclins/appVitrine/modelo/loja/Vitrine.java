@@ -4,19 +4,18 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
-
+@Entity
+@Table (name = "Tabela_Vitrine")
 public class Vitrine {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Temporal(TemporalType.DATE)
+   @Temporal(TemporalType.DATE)
     private Date dataInicio;
-    @Temporal(TemporalType.DATE)
+   @Temporal(TemporalType.DATE)
     private Date dataFim;
-
-    @ManyToOne
-    @JoinColumn(name = "ItensVitrine")
+   @Id
+   @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Integer id;
+   @OneToMany
+   @JoinColumn(name = "Tabela_ItensVitrine")
     private List<ItensVitrine> itensVitrine;
 
     public Vitrine() {

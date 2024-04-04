@@ -1,18 +1,19 @@
 package br.edu.fateclins.appVitrine.modelo.acesso;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.util.List;
-
-
-public class Perfil implements Serializable {
-
-    private Integer id;
+@Entity
+@Table(name = "Tabela_Perfil")
+public class Perfil {
+@Id
+@GeneratedValue (strategy = GenerationType.IDENTITY)
+@Column
+private Integer id;
+@Column
     private String descricao;
+    @OneToMany
+    @JoinColumn(name = "Tabela_UsuarioADM")
     private List<UsuarioADM> usuariosPerfil;
 
     public Perfil() {

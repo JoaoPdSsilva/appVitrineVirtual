@@ -1,20 +1,22 @@
 package br.edu.fateclins.appVitrine.modelo.loja;
 
 import jakarta.persistence.*;
+
 @Entity
+@Table(name = "Tabela_ItensComprados")
 public class ItensComprados {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
     private int quantidade;
     @Column
     private double valor;
     @OneToOne
-    @JoinColumn(name = "Compra")
+    @JoinColumn(name = "Tabela_Compras")
     private Compra compra;
     @ManyToOne
-    @JoinColumn(name = "Produtos")
+    @JoinColumn(name = "Tabela_Produto")
     private Produto produto;
 
     public ItensComprados() {
