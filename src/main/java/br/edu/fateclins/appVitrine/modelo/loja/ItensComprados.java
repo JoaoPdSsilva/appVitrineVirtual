@@ -2,21 +2,25 @@ package br.edu.fateclins.appVitrine.modelo.loja;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 @Entity
-@Table(name = "Tabela_ItensComprados")
-public class ItensComprados {
+public class ItensComprados implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @Column(length = 4)
     private int quantidade;
-    @Column
+    @Column(precision = 2)
     private double valor;
-    @OneToOne
-    @JoinColumn(name = "Tabela_Compras")
+    // relacionamento 1 com a classe Compra
+    @ManyToOne
+    @JoinColumn(name = "id_compra")
     private Compra compra;
     @ManyToOne
-    @JoinColumn(name = "Tabela_Produto")
+    @JoinColumn(name = "id_produto")
     private Produto produto;
 
     public ItensComprados() {
@@ -29,11 +33,11 @@ public class ItensComprados {
         this.produto = produto;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

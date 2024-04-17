@@ -2,25 +2,27 @@ package br.edu.fateclins.appVitrine.modelo.loja;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 @Entity
-@Table (name = "Tabela_Compras")
-public class Compra {
+public class Compra implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private UUID id;
     @Column
     private boolean concluida;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataCompra;
-    @Column
+    @Column(precision = 2)
     private double valorFrete;
     @ManyToOne
-    @JoinColumn(name = "Tabela_Cliente")
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
-    @OneToMany
-    @JoinColumn(name = "Tabela_ItensComprados")
+    @OneToMany(mappedBy = "compra")
     private List<ItensComprados> itens;
 
     public Compra() {
@@ -33,11 +35,11 @@ public class Compra {
         }
         return valorCompra;
     }
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -1,19 +1,22 @@
 package br.edu.fateclins.appVitrine.modelo.loja;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-public abstract class Usuario {
+import java.io.Serializable;
+import java.util.UUID;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private UUID id;
+    @Column(length = 130, nullable = false)
     private String nome;
-    @Column
+    @Column(length = 130, nullable = false, unique = true)
     private String email;
-    @Column
+    @Column(length = 60)
     private String senha;
 
     public Usuario() {
@@ -23,11 +26,11 @@ public abstract class Usuario {
         return true;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
