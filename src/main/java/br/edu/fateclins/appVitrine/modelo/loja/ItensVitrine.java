@@ -1,18 +1,23 @@
 package br.edu.fateclins.appVitrine.modelo.loja;
-
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.UUID;
+
+
 @Entity
-@Table (name = "Tabela_ItensVitrine")
-public class ItensVitrine {
+public class ItensVitrine implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @Column(length = 4)
     private int qtdeDisponivel;
     @ManyToOne
-    @JoinColumn(name = "Tabela_Produto")
+    @JoinColumn(name = "id_produto")
     private Produto produto;
     @ManyToOne
-    @JoinColumn(name = "Tabela_Vitrine")
+    @JoinColumn(name = "id_vitrine")
     private Vitrine vitrine;
 
     public ItensVitrine() {
@@ -40,5 +45,13 @@ public class ItensVitrine {
 
     public void setVitrine(Vitrine vitrine) {
         this.vitrine = vitrine;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

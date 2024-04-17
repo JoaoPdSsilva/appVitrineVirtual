@@ -1,33 +1,37 @@
 package br.edu.fateclins.appVitrine.modelo.loja;
 
-import jakarta.persistence.*;
-
+import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
+
+import jakarta.persistence.*;
 @Entity
-@Table (name = "Tabela_Secao")
-public class Secao {
+public class Secao  implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @Column(nullable = false, length = 60)
     private String nome;
-    @OneToMany
-    @JoinColumn(name = "Tabela_Produto")
+    // relacionamento 0..* com a classe Produto
+    //@OneToMany(mappedBy ="secao" )
+    @Transient
     private List<Produto> produtos;
 
     public Secao() {
     }
 
-    public Secao(Integer id, String nome) {
+    public Secao(UUID id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

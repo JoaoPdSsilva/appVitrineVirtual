@@ -2,22 +2,23 @@ package br.edu.fateclins.appVitrine.modelo.loja;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 @Entity
-@Table (name = "Tabela_Cliente")
-public class Cliente extends Usuario{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  Integer id;
+@Table(name="UsuarioCliente")
+public class Cliente extends Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
-    @OneToMany
-    @JoinColumn(name = "Tabela_Compras")
+    // relacionamento 0..* com a classe Compra
+    @Transient
     private List<Compra> comprasRealizadas;
 
     public Cliente() {

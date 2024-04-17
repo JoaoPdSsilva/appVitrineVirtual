@@ -8,33 +8,32 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table (name = "Tabela_Produto")
+@Table (name = "Produto")
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column
+    @Column(nullable = false, length = 120)
     private String nome;
-    @Column
+    @Column(length = 500)
     private String descricao;
-    @Column
-    private double valor;
-    @Column
+    @Column(precision = 2)
+    private Double valor;
+    @Column(length = 5)
     private int qtdeEstoque;
-    @Column
+    @Column(length = 5)
     private int estoqueMinimo;
-    @Column(name = "Caminho_Imagem")
+    @Column(length = 255)
     private String imagem;
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "id_secao")
     private Secao secao;
-    @OneToMany
-    @JoinColumn(name = "Tabela_ItensVitrine")
-    private List<ItensVitrine> vitrines;
-    @OneToMany
-    @JoinColumn(name = "Tabela_ItensComprados")
+    @Transient
     private List<ItensComprados> listaComprados;
+    @Transient
+    private List<ItensVitrine> vitrines;
 
     public Produto() {
     }

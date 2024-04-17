@@ -2,19 +2,25 @@ package br.edu.fateclins.appVitrine.modelo.acesso;
 
 import jakarta.persistence.*;
 
+
+import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
+
 @Entity
-@Table(name = "Tabela_Perfil")
-public class Perfil {
-@Id
-@GeneratedValue (strategy = GenerationType.IDENTITY)
-@Column
-private Integer id;
-@Column
+public class Perfil implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @Column(nullable = false, length = 30)
     private String descricao;
-    @OneToMany
-    @JoinColumn(name = "Tabela_UsuarioADM")
+    // relacionamento 0..* com a classe UsuarioADM
+    // @OneToMany(mappedBy = "perfil")
+    @Transient
     private List<UsuarioADM> usuariosPerfil;
+
 
     public Perfil() {
     }
@@ -23,11 +29,11 @@ private Integer id;
         this.descricao = descricao;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
